@@ -6,7 +6,7 @@
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
 <title>python的分支&amp;循环&amp;函数 | whc</title>
-<link rel="shortcut icon" href="https://chiningmeng.github.io/favicon.ico?v=1572681255617">
+<link rel="shortcut icon" href="https://chiningmeng.github.io/favicon.ico?v=1572681818038">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://chiningmeng.github.io/styles/main.css" type='text/css' media='all'>
 
@@ -138,8 +138,8 @@
         <div class="entry-container">
           <div class="entry-content">
             <article>
-              <p>#一.分支的基本语法<br>
-##单if</p>
+              <h1 id="一分支的基本语法">一.分支的基本语法</h1>
+<h2 id="单if">单if</h2>
 <pre><code>if表达式：
     语句1
     语句2
@@ -148,8 +148,8 @@
 <p>2.条件表达式就是计算结果必须为布尔值得表达式<br>
 <strong>3.表达式后面的冒号不能少</strong><br>
 <strong>4.注意if后面出现的语句，如果属于if语句块，则必须同一个缩进等级</strong><br>
-5.条件表达式结果为True执行if后面的缩进语句块<br>
-##双向分支</p>
+5.条件表达式结果为True执行if后面的缩进语句块</p>
+<h2 id="双向分支">双向分支</h2>
 <pre><code>if表达式：
     语句1
     语句2
@@ -159,8 +159,8 @@ else：
     语句
     ……
 </code></pre>
-<p><strong>缩进问题，if和else一个层次，其余语句一个层次。</strong><br>
-##多线路分支</p>
+<p><strong>缩进问题，if和else一个层次，其余语句一个层次。</strong></p>
+<h2 id="多线路分支">多线路分支</h2>
 <pre><code>    if 条件表达式:
         语句1：           
     elif 条件表达式:                    
@@ -170,13 +170,14 @@ else：
     else:                   
         语句1
 </code></pre>
-<p>##注意：<br>
-1.if语句可以嵌套使用，但不推荐。<br>
-2.python没有switch-case语句。</p>
-<p>#二.循环语句<br>
-1.for循环<br>
+<h2 id="注意">注意：</h2>
+<pre><code>1.if语句可以嵌套使用，但不推荐。
+2.python没有switch-case语句。
+</code></pre>
+<h1 id="二循环语句">二.循环语句</h1>
+<p>1.for循环<br>
 2.while循环</p>
-<p>##for循环</p>
+<h2 id="for循环">for循环</h2>
 <pre><code>for 变量 in 列表：
     语句
     语句
@@ -213,14 +214,14 @@ eg:</p>
 <pre><code>def sample(n_samples):
     pass
 </code></pre>
-<p>该处的 pass 便是占据一个位置，因为如果定义一个空函数程序会报错，当你没有想好函数的内容是可以用 pass 填充，使程序可以正常运行。<br>
-##while循环<br>
-语法：</p>
+<p>该处的 pass 便是占据一个位置，因为如果定义一个空函数程序会报错，当你没有想好函数的内容是可以用 pass 填充，使程序可以正常运行。</p>
+<h2 id="while循环">while循环</h2>
+<p>语法：</p>
 <pre><code>    while 条件表达式:
         语句块
 </code></pre>
-<p>注：表达式两边不用加括号<br>
-#三.函数</p>
+<p>注：表达式两边不用加括号</p>
+<h1 id="三函数">三.函数</h1>
 <p><strong>函数代码块以 def 关键词开头，后接函数标识符名称和圆括号 ()。</strong><br>
 任何传入参数和自变量必须放在圆括号中间，圆括号之间可以用于定义参数。<br>
 函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。<br>
@@ -229,9 +230,9 @@ return [表达式] 结束函数，选择性地返回一个值给调用方。不�
 <pre><code>def 函数名（参数列表）:
     函数体
 </code></pre>
-<p><strong>默认情况下，参数值和参数名称是按函数声明中定义的顺序匹配起来的。</strong><br>
-###可更改(mutable)与不可更改(immutable)对象<br>
-在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。</p>
+<p><strong>默认情况下，参数值和参数名称是按函数声明中定义的顺序匹配起来的。</strong></p>
+<h3 id="可更改mutable与不可更改immutable对象">可更改(mutable)与不可更改(immutable)对象</h3>
+<p>在 python 中，strings, tuples, 和 numbers 是不可更改的对象，而 list,dict 等则是可以修改的对象。</p>
 <pre><code>    不可变类型：变量赋值 a=5 后再赋值 a=10，
                这里实际是新生成一个 int 值对象 10，再让 a 指向它，而 5 被丢弃，
                不是改变a的值，相当于新生成了a。
@@ -270,15 +271,15 @@ print (&quot;函数外取值: &quot;, mylist)
 <pre><code>函数内取值:  [10, 20, 30, [1, 2, 3, 4]]
 函数外取值:  [10, 20, 30, [1, 2, 3, 4]]
 </code></pre>
-<p><strong>python 中一切都是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象</strong><br>
-##参数<br>
-以下是调用函数时可使用的正式参数类型：<br>
+<p><strong>python 中一切都是对象，严格意义我们不能说值传递还是引用传递，我们应该说传不可变对象和传可变对象</strong></p>
+<h2 id="参数">参数</h2>
+<p>以下是调用函数时可使用的正式参数类型：<br>
 <strong>必需参数<br>
 关键字参数<br>
 默认参数<br>
-不定长参数</strong><br>
-###必须参数<br>
-必需参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样。<br>
+不定长参数</strong></p>
+<h3 id="必须参数">必须参数</h3>
+<p>必需参数须以正确的顺序传入函数。调用时的数量必须和声明时的一样。<br>
 调用 printme() 函数，你必须传入一个参数，不然会出现语法错误：</p>
 <pre><code>def printme( str ):
    &quot;打印任何传入的字符串&quot;
@@ -294,8 +295,8 @@ printme()
     printme()
 TypeError: printme() missing 1 required positional argument: 'str'
 </code></pre>
-<p>###关键字参数<br>
-关键字参数和函数调用关系紧密，函数调用使用关键字参数来确定传入的参数值。<br>
+<h3 id="关键字参数">关键字参数</h3>
+<p>关键字参数和函数调用关系紧密，函数调用使用关键字参数来确定传入的参数值。<br>
 使用关键字参数允许函数调用时参数的顺序与声明时不一致，因为 Python 解释器能够用参数名匹配参数值。</p>
 <pre><code>def printinfo( name, age ):
    &quot;打印任何传入的字符串&quot;
@@ -310,8 +311,8 @@ printinfo( age=50, name=&quot;runoob&quot; )
 名字:  runoob
 年龄:  50
 </code></pre>
-<p>###默认参数<br>
-调用函数时，如果没有传递参数，则会使用默认参数。以下实例中如果没有传入 age 参数，则使用默认值：</p>
+<h3 id="默认参数">默认参数</h3>
+<p>调用函数时，如果没有传递参数，则会使用默认参数。以下实例中如果没有传入 age 参数，则使用默认值：</p>
 <pre><code>def printinfo( name, age = 35 ):
    &quot;打印任何传入的字符串&quot;
    print (&quot;名字: &quot;, name)
@@ -330,9 +331,9 @@ printinfo( name=&quot;runoob&quot; )
 名字:  runoob
 年龄:  35
 </code></pre>
-<p>###不定长参数<br>
-####可看python基础教程（第三版）的p100和p66<br>
-你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述 2 种参数不同，声明时不会命名。基本语法如下：</p>
+<h3 id="不定长参数">不定长参数</h3>
+<h4 id="可看python基础教程第三版的p100和p66">可看python基础教程（第三版）的p100和p66</h4>
+<p>你可能需要一个函数能处理比当初声明时更多的参数。这些参数叫做不定长参数，和上述 2 种参数不同，声明时不会命名。基本语法如下：</p>
 <pre><code>def functionname([formal_args,] *var_args_tuple ):
    &quot;函数_文档字符串&quot;
    function_suite
@@ -386,8 +387,8 @@ TypeError: f() takes 2 positional arguments but 3 were given
 6
 &gt;&gt;&gt;
 </code></pre>
-<p>##匿名参数<br>
-（感觉和C的宏定义有点像）<br>
+<h2 id="匿名参数">匿名参数</h2>
+<p>（感觉和C的宏定义有点像）<br>
 python 使用 lambda 来创建匿名函数。<br>
 所谓匿名，意即不再使用 def 语句这样标准的形式定义一个函数。</p>
 <p>lambda 只是一个表达式，函数体比 def 简单很多。<br>
@@ -432,7 +433,7 @@ print (&quot;相加后的值为 : &quot;, sum( 20, 20 ))
           </div>
           <div class="author-meta">
             <div class="author">
-              <img alt='' src="https://chiningmeng.github.io/images/avatar.png?v=1572681255617" class='avatar avatar-72 photo' height='72' width='72'>
+              <img alt='' src="https://chiningmeng.github.io/images/avatar.png?v=1572681818038" class='avatar avatar-72 photo' height='72' width='72'>
               <span>WRITTEN BY: &nbsp;&nbsp;&nbsp;<a href='https://chiningmeng.github.io'></a> </span>
             </div>
             <div class="bio">
