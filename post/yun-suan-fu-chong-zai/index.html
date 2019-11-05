@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
-<title>80x86寄存器组 | whc</title>
+<title>运算符重载 | whc</title>
 <link rel="shortcut icon" href="https://chiningmeng.github.io/favicon.ico?v=1572927331078">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://chiningmeng.github.io/styles/main.css" type='text/css' media='all'>
@@ -127,59 +127,45 @@
         
 
         <div class="entry-meta">
-          <span class="date">· 2019-11-03 ·</span> <span> / </span>
+          <span class="date">· 2019-11-05 ·</span> <span> / </span>
           <span class="author">
             <a href="https://chiningmeng.github.io" title="" rel="author"> Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></a>
           </span>
           
             <span class="category">
                     <span> / </span>
-                    <a href="https://chiningmeng.github.io/tag/mufo8pcjG">汇编</a>
+                    <a href="https://chiningmeng.github.io/tag/v_4YuHc4M">C++</a>
                 </span>
           
         </div>
         <div class='entry-header'>
-          <h1 class='entry-title'>80x86寄存器组</h1>
+          <h1 class='entry-title'>运算符重载</h1>
         </div>
         <div class="entry-container">
           <div class="entry-content">
             <article>
-              <h2 id="名词解释">名词解释</h2>
-<p>1.通用寄存器</p>
-<blockquote>
-<blockquote>
-<p>AX (accumulator) :主要作为累加器，是算数运算的主要寄存器，在乘除指令中存放操作数；此外所有I/O指令都用AX与外部设备传送信息。<br>
-BX (base) :可作为通用寄存器使用；此外，在计算存储器地址是，常作基址寄存器。<br>
-CX (count) :可作为通用寄存器使用；此外还常用于保存计数值，如移位指令、循环(loop)和串处理指令中作为隐含的计数器。<br>
-DX (data) :可作为通用寄存器使用；此外在双字长运算时把DX和AX组合起来存放一个双字长数，DX用来放高位字。在某些I/O操作中，DX还可存放I/O的端口地址。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>他们都是16位寄存器，可以以字(16位)的形式来访问，或者也可以以字节(8位)的形式来访问。<br>
-例如，对AX可以分别访问高字节AH或低字节AL。</p>
-</blockquote>
-<p>指针寄存器/变址寄存器<br>
-SP,BP,SI,DI</p>
-<blockquote>
-<blockquote>
-<p>《待写》</p>
-</blockquote>
-</blockquote>
-<p>2.专用寄存器</p>
-<blockquote>
-<p>IP是指令指针寄存器（相当于偏移地址)<br>
-《待续》</p>
-</blockquote>
-<p>3.段寄存器：专用于存储器寻址，用来直接或间接地存放段地址。其长度只有16位。</p>
-<blockquote>
-<blockquote>
-<p>CS (code segment)代码段<br>
-DS (data segment)数据段<br>
-SS (stack segment)堆栈段<br>
-ES (extra segment)附加段</p>
-</blockquote>
-</blockquote>
-<p>一般来说，CPU在访问内存的时候要由相关部件提供内存单元的段地址和偏移地址，送入地址加法器合成物理地址。段寄存器提供段地址。8086CPU有4个段寄存器：CS、DS、ES、SS。典型的提供段地址和偏移地址的寄存器为CS和IP寄存器。也就是说，CPU会将CS:IP合成的物理地址指向的内容当作指令执行。</p>
+              <h2 id="重载输出运算符">重载输出运算符&lt;&lt;</h2>
+<ol>
+<li>输出运算符的第一个形参是一个非常量ostream对象的引用。<br>
+非常量的原因：向流写入内容会改变其状态；<br>
+该形参是引用的原因：我们无法直接复制一个ostream对象。</li>
+<li>第二个形参一般是一个常引用（我们想打印出来的类类型）<br>
+该形参是引用的原因：希望避免复制实参；<br>
+该形参是常量的原因：打印对象不会改变对象的内容<br>
+<strong>为与其他输出运算符保持一致，operator&lt;&lt;一般要返回它的ostream形参</strong></li>
+</ol>
+<pre><code>ostream&amp; operator&lt;&lt;(ostream&amp; os, const Sales_item) {
+	os &lt;&lt; item.isbn() &lt;&lt; &quot; &quot; &lt;&lt; item.units_sold &lt;&lt; &quot; &quot;
+		&lt;&lt; item.revenue &lt;&lt; &quot; &quot; &lt;&lt; item.avg_price;
+	reutrn os;
+}
+</code></pre>
+<h3 id="注意输出运算符要尽量减少格式化操作">注意输出运算符要尽量减少格式化操作</h3>
+<p>让用户有权控制输出细节<br>
+##输入输出运算符必须是非成员函数<br>
+否则，左侧的运算对象将是我们类的一个对象<br>
+IO运算符通常被声明为友元。</p>
+<h2 id="重载输入运算符">重载输入运算符</h2>
 
             </article>
           </div>
@@ -239,7 +225,7 @@ ES (extra segment)附加段</p>
             <nav class="navigation pagination" role="navigation">
               <h2 class="screen-reader-text">Posts navigation</h2>
               <div class="nav-links">
-                <a class="next page-numbers" href="https://chiningmeng.github.io/post/python-de-fen-zhi-&amp;-xun-huan-&amp;-han-shu">下一篇->python的分支&amp;循环&amp;函数</a>
+                <a class="next page-numbers" href="https://chiningmeng.github.io/post/80x86-zhi-ling-xi-tong">下一篇->80x86指令系统</a>
               </div>
             </nav>
           

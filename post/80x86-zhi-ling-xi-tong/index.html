@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
-<title>80x86寄存器组 | whc</title>
+<title>80x86指令系统 | whc</title>
 <link rel="shortcut icon" href="https://chiningmeng.github.io/favicon.ico?v=1572927331078">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://chiningmeng.github.io/styles/main.css" type='text/css' media='all'>
@@ -127,7 +127,7 @@
         
 
         <div class="entry-meta">
-          <span class="date">· 2019-11-03 ·</span> <span> / </span>
+          <span class="date">· 2019-11-05 ·</span> <span> / </span>
           <span class="author">
             <a href="https://chiningmeng.github.io" title="" rel="author"> Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></a>
           </span>
@@ -139,47 +139,191 @@
           
         </div>
         <div class='entry-header'>
-          <h1 class='entry-title'>80x86寄存器组</h1>
+          <h1 class='entry-title'>80x86指令系统</h1>
         </div>
         <div class="entry-container">
           <div class="entry-content">
             <article>
-              <h2 id="名词解释">名词解释</h2>
-<p>1.通用寄存器</p>
-<blockquote>
-<blockquote>
-<p>AX (accumulator) :主要作为累加器，是算数运算的主要寄存器，在乘除指令中存放操作数；此外所有I/O指令都用AX与外部设备传送信息。<br>
-BX (base) :可作为通用寄存器使用；此外，在计算存储器地址是，常作基址寄存器。<br>
-CX (count) :可作为通用寄存器使用；此外还常用于保存计数值，如移位指令、循环(loop)和串处理指令中作为隐含的计数器。<br>
-DX (data) :可作为通用寄存器使用；此外在双字长运算时把DX和AX组合起来存放一个双字长数，DX用来放高位字。在某些I/O操作中，DX还可存放I/O的端口地址。</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>他们都是16位寄存器，可以以字(16位)的形式来访问，或者也可以以字节(8位)的形式来访问。<br>
-例如，对AX可以分别访问高字节AH或低字节AL。</p>
-</blockquote>
-<p>指针寄存器/变址寄存器<br>
-SP,BP,SI,DI</p>
-<blockquote>
-<blockquote>
-<p>《待写》</p>
-</blockquote>
-</blockquote>
-<p>2.专用寄存器</p>
-<blockquote>
-<p>IP是指令指针寄存器（相当于偏移地址)<br>
-《待续》</p>
-</blockquote>
-<p>3.段寄存器：专用于存储器寻址，用来直接或间接地存放段地址。其长度只有16位。</p>
-<blockquote>
-<blockquote>
-<p>CS (code segment)代码段<br>
-DS (data segment)数据段<br>
-SS (stack segment)堆栈段<br>
-ES (extra segment)附加段</p>
-</blockquote>
-</blockquote>
-<p>一般来说，CPU在访问内存的时候要由相关部件提供内存单元的段地址和偏移地址，送入地址加法器合成物理地址。段寄存器提供段地址。8086CPU有4个段寄存器：CS、DS、ES、SS。典型的提供段地址和偏移地址的寄存器为CS和IP寄存器。也就是说，CPU会将CS:IP合成的物理地址指向的内容当作指令执行。</p>
+              <p>1、数据传送指令：</p>
+<p>通用数据传送指令<br>
+MOV、PUSH、POP、XCHG<br>
+累加器专用传送指令<br>
+IN、OUT、XLAT<br>
+地址传送指令<br>
+LEA、LDS、LES<br>
+标志寄存器传送指令<br>
+LAHF、SAHF、PUSHF、POPF<br>
+类型转换指令<br>
+CBW、CWD</p>
+<p>2、MOV    DST,  SRC<br>
+注意:</p>
+<ul>
+<li>DST、SRC 不能同时为段寄存器<s>MOV  DS, ES</s></li>
+<li>立即数不能直接送段寄存器 <s>MOV  DS, 2000H</s></li>
+<li>DST 不能是立即数和CS</li>
+<li>DST、SRC 不能同时为存储器寻址</li>
+<li>不影响标志位<br>
+ps:</li>
+</ul>
+<ol>
+<li>立即数不能直接送段寄存器</li>
+<li>MOV指令的目的操作数不允许用立即数方式，也不允许用CS寄存器</li>
+<li>不能用MOV在两存储单元间传送数据</li>
+<li>此外，也不能在两段寄存器间传送数据</li>
+</ol>
+<p>3、进栈指令： PUSH  SRC<br>
+出栈指令：       POP  DST<br>
+堆栈：‘先进后出’的存储区，段地址存放在SS中，<br>
+SP在任何时候都指向栈顶，进出栈后自动修改SP。<br>
+注意:</p>
+<ul>
+<li>堆栈操作必须以字为单位。</li>
+<li>不影响标志位</li>
+<li>不能用立即寻址方式<br>
+<s>PUSH  1234H</s></li>
+<li>DST不能是CS<br>
+<s>POP  CS</s></li>
+</ul>
+<p>4、 交换指令：XCHG  OPR1, OPR2<br>
+注意:</p>
+<ul>
+<li>不影响标志位</li>
+<li>不允许使用段寄存器</li>
+</ul>
+<p>5、累加器专用传送指令（只限使用AX或AL）<br>
+输入指令    IN   （I/O → CPU）<br>
+输出指令   OUT   （CPU → I/O）<br>
+注意:</p>
+<ul>
+<li>不影响标志位</li>
+<li>前256个端口号00H~FFH可直接在指令中指定（长格式）</li>
+<li>如果端口号≥ 256，端口号 →DX（短格式）</li>
+</ul>
+<p>6、换码指令：XLAT  或　XLAT  OPR<br>
+执行操作：(AL)  &lt;—  ( (BX) + (AL) )<br>
+注意:</p>
+<ul>
+<li>不影响标志位</li>
+<li>字节表格(长度不超过256)<br>
+首地址 → (BX)</li>
+<li>需转换的代码位移量  → (AL)</li>
+</ul>
+<p>7、地址传送指令<br>
+有效地址送寄存器指令：<br>
+LEA  REG, SRC<br>
+执行操作： (REG) &lt;— SRC<br>
+注意:</p>
+<ul>
+<li>不影响标志位</li>
+<li>REG 不能是段寄存器</li>
+<li>SRC 必须为存储器寻址方式</li>
+</ul>
+<p>8、标志寄存器传送指令<br>
+标志送AH指令：  LAHF<br>
+执行操作：(AH) &lt;— (FLAGS的低字节)</p>
+<p>9、类型转换指令<br>
+CBW          AL → AX<br>
+CWD         AX → (DX,AX)<br>
+注意:</p>
+<ul>
+<li>无操作数指令</li>
+<li>隐含对AL 或AX 进行符号扩展</li>
+<li>不影响条件标志位</li>
+</ul>
+<p>10、算术指令：<br>
+加法指令<br>
+ADD、ADC、INC<br>
+减法指令<br>
+SUB、SBB、DEC、NEG、CMP<br>
+乘法指令<br>
+MUL、IMUL<br>
+除法指令<br>
+DIV、IDIV<br>
+十进制调整指令<br>
+DAA、DAS、<br>
+AAA、AAS、AAM、AAD</p>
+<p>11、加法指令<br>
+加法指令：    ADD  DST, SRC<br>
+带进位加法指令：  ADC  DST, SRC<br>
+加1指令：    INC  OPR<br>
+注意:</p>
+<ul>
+<li>除INC指令不影响CF标志外，均对条件标志位有影响。<br>
+SF:<br>
+1 结果为负<br>
+0 否则<br>
+ZF：<br>
+1 结果为0<br>
+0 否则<br>
+CF：<br>
+1 和的最高有效位有向高位的进位<br>
+0 否则<br>
+OF：<br>
+1 两个操作数符号相同，而结果符号与之相反<br>
+CF 位表示 无符号数 相加的溢出。<br>
+OF 位表示 带符号数 相加的溢出。</li>
+</ul>
+<p>12、减法指令<br>
+减法指令：  SUB  DST, SRC<br>
+带借位减法指令：  SBB  DST, SRC<br>
+减1指令：  DEC  OPR<br>
+求补指令：NEG  OPR<br>
+比较指令： CMP  OPR1, OPR2<br>
+注意:<br>
+除DEC指令不影响CF标志外，均对条件标志位有影响。<br>
+减法指令对条件标志（CF/OF/ZF/SF）的影响：<br>
+CF:<br>
+1 被减数的最高有效位有向高位的借位或减法转换为加法运算时无进位<br>
+0 否则<br>
+OF：<br>
+1 两个操作数符号相反，而结果的符号与减数相同<br>
+0 否则<br>
+CF 位表示 无符号数 减法的溢出。<br>
+OF 位表示 带符号数 减法的溢出。<br>
+NEG指令对CF/OF的影响<br>
+CF：<br>
+0 操作数为0<br>
+1 否则<br>
+OF：<br>
+1 操作数为-128（字节运算）或操作数为-32768（字运算）<br>
+0 否则</p>
+<p>13、乘法指令<br>
+无符号数乘法指令：  MUL  SRC<br>
+带符号数乘法指令：  IMUL  SRC<br>
+执行操作：<br>
+字节操作数  (AX) &lt;—  (AL) * (SRC)<br>
+字操作数  (DX, AX) &lt;—  (AX) *(SRC)<br>
+注意:</p>
+<ul>
+<li>AL (AX) 为隐含的乘数寄存器。</li>
+<li>AX (DX,AX) 为隐含的乘积寄存器。</li>
+<li>SRC不能为立即数。</li>
+<li>除CF和OF外，对条件标志位无定义。<br>
+乘法指令对 CF/OF 的影响：<br>
+MUL指令：CF,OF<br>
+00：乘积的高一半为零<br>
+11 否则<br>
+IMUL指令：CF,OF<br>
+00：乘积的高一半是低一半的符号扩展<br>
+11：否则</li>
+</ul>
+<p>14、除法指令<br>
+无符号数除法指令：   DIV  SRC<br>
+带符号数除法指令：   IDIV  SRC<br>
+执行操作：<br>
+(AL) &lt;—  (AX) / (SRC) 的商<br>
+(AH) &lt;—  (AX) / (SRC) 的余数<br>
+字操作<br>
+(AX) &lt;—  (DX, AX) / (SRC) 的商<br>
+(DX) &lt;—  (DX, AX) / (SRC) 的余数<br>
+注意:</p>
+<ul>
+<li>AX (DX,AX) 为隐含的被除数寄存器。</li>
+<li>AL (AX) 为隐含的商寄存器。</li>
+<li>AH (DX) 为隐含的余数寄存器。</li>
+<li>SRC不能为立即数。</li>
+<li>对所有条件标志位均无定义。如何判别结果有效？</li>
+</ul>
 
             </article>
           </div>
@@ -239,7 +383,7 @@ ES (extra segment)附加段</p>
             <nav class="navigation pagination" role="navigation">
               <h2 class="screen-reader-text">Posts navigation</h2>
               <div class="nav-links">
-                <a class="next page-numbers" href="https://chiningmeng.github.io/post/python-de-fen-zhi-&amp;-xun-huan-&amp;-han-shu">下一篇->python的分支&amp;循环&amp;函数</a>
+                <a class="next page-numbers" href="https://chiningmeng.github.io/post/duan-ding-yi-de-wei-cao-zuo">下一篇->段定义的伪操作</a>
               </div>
             </nav>
           
