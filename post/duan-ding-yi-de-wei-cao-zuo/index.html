@@ -6,7 +6,7 @@
 <meta name="robots" content="all,follow">
 <meta name="googlebot" content="index,follow,snippet,archive">
 <title>段定义的伪操作 | whc</title>
-<link rel="shortcut icon" href="https://chiningmeng.github.io/favicon.ico?v=1572927331078">
+<link rel="shortcut icon" href="https://chiningmeng.github.io/favicon.ico?v=1573101612647">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <link rel="stylesheet" href="https://chiningmeng.github.io/styles/main.css" type='text/css' media='all'>
 
@@ -153,11 +153,12 @@
 　　　　segment-name ENDS<br>
 　注意：其中省略号部分，对于数据段、附加段、堆栈段来说，一般是存储单元的定义、分配等其他伪操作；但是对于代码段则是指令及伪操作。<br>
 ASSUME :明确段与段寄存器的关系，指定某个段分配给哪一个段寄存器，仅仅关联段名（除CS外），以便在访问段内变量时程序可以知道用哪个段寄存器，并没有在程序加载时将段地址装入段寄存器。<br>
+即assume cs:code 这一句已经设定了CS。 这与其他段不同<br>
 　举例：</p>
 <pre><code> 　　　mydata segment 
 　　　 assume ds:mydata 
 　　　 start: 
-　　　 move ax,mydata       ;在代码段中还必须将段地址装入相应的寄存器中
+　　　 move ax,mydata 
 　　　 move ds,ax　 
 　　　 mydata ends 
 </code></pre>
@@ -191,7 +192,7 @@ ASSUME :明确段与段寄存器的关系，指定某个段分配给哪一个段
           </div>
           <div class="author-meta">
             <div class="author">
-              <img alt='' src="https://chiningmeng.github.io/images/avatar.png?v=1572927331078" class='avatar avatar-72 photo' height='72' width='72'>
+              <img alt='' src="https://chiningmeng.github.io/images/avatar.png?v=1573101612647" class='avatar avatar-72 photo' height='72' width='72'>
               <span>WRITTEN BY: &nbsp;&nbsp;&nbsp;<a href='https://chiningmeng.github.io'></a> </span>
             </div>
             <div class="bio">
