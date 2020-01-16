@@ -2,14 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chiningmeng.github.io</id>
     <title>whc</title>
-    <updated>2019-11-07T04:40:16.004Z</updated>
+    <updated>2020-01-16T11:44:50.413Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chiningmeng.github.io"/>
     <link rel="self" href="https://chiningmeng.github.io/atom.xml"/>
     <subtitle>快进来！找个位子随便坐</subtitle>
     <logo>https://chiningmeng.github.io/images/avatar.png</logo>
     <icon>https://chiningmeng.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, whc</rights>
+    <rights>All rights reserved 2020, whc</rights>
+    <entry>
+        <title type="html"><![CDATA[1.两数之和(Tow Sum)]]></title>
+        <id>https://chiningmeng.github.io/post/1liang-shu-zhi-he-tow-sum</id>
+        <link href="https://chiningmeng.github.io/post/1liang-shu-zhi-he-tow-sum">
+        </link>
+        <updated>2020-01-16T11:43:07.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[python随笔]]></title>
+        <id>https://chiningmeng.github.io/post/python-sui-bi</id>
+        <link href="https://chiningmeng.github.io/post/python-sui-bi">
+        </link>
+        <updated>2019-11-09T12:35:26.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[汇编随笔]]></title>
+        <id>https://chiningmeng.github.io/post/hui-bian-sui-bi</id>
+        <link href="https://chiningmeng.github.io/post/hui-bian-sui-bi">
+        </link>
+        <updated>2019-11-07T09:18:41.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[汇编Debug的使用]]></title>
         <id>https://chiningmeng.github.io/post/hui-bian-debug-de-shi-yong</id>
