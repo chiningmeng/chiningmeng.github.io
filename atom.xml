@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://chiningmeng.github.io</id>
-    <title>whc</title>
-    <updated>2020-01-17T05:38:39.921Z</updated>
+    <title> </title>
+    <updated>2020-01-17T05:39:19.669Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://chiningmeng.github.io"/>
     <link rel="self" href="https://chiningmeng.github.io/atom.xml"/>
-    <subtitle>快进来！找个位子随便坐</subtitle>
+    <subtitle> </subtitle>
     <logo>https://chiningmeng.github.io/images/avatar.png</logo>
     <icon>https://chiningmeng.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, whc</rights>
+    <rights>All rights reserved 2020,  </rights>
     <entry>
         <title type="html"><![CDATA[排序算法]]></title>
         <id>https://chiningmeng.github.io/post/pai-xu-suan-fa</id>
